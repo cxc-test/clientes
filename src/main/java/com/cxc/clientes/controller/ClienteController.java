@@ -13,35 +13,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "clientes/")
+@RequestMapping(value = "clientes")
+@CrossOrigin(origins = "*")
 public class ClienteController {
 
     @Autowired
     ClienteService clienteService;
 
-    @CrossOrigin("*")
-    @PostMapping(value = "create", produces = MediaType.APPLICATION_JSON)
+    @CrossOrigin(origins = "*")
+    @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON)
     @ResponseBody
     public ResponseEntity<ClienteDto> create(@RequestBody ClienteDto dto) {
         return ResponseEntity.ok(clienteService.create(dto));
     }
 
-    @CrossOrigin("*")
-    @GetMapping(value = "")
+    @GetMapping(value = "/")
     @ResponseBody
     public ResponseEntity<List<ClienteDto>> getAll() {
         return ResponseEntity.ok(clienteService.getAll());
     }
 
-    @CrossOrigin("*")
-    @PutMapping(value = "update")
+    @PutMapping(value = "/update")
     @ResponseBody
     public ResponseEntity<ClienteDto> update(@RequestBody ClienteDto dto) {
         return ResponseEntity.ok(clienteService.update(dto));
     }
 
-    @CrossOrigin("*")
-    @DeleteMapping(value = "deleteById/{id}")
+    @CrossOrigin(origins = "*")
+    @DeleteMapping(value = "/deleteById/{id}")
     @ResponseBody
     public ResponseEntity<Boolean> deleteById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(clienteService.deleteById(id));
